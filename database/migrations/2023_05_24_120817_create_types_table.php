@@ -10,8 +10,9 @@ return new class extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->name();
-            $table->slug();
+            $table->string("name", 100)->unique();
+            $table->string("slug", 100)->unique();
+            $table->foreignId("projects_id")->constrained();
             $table->timestamps();
         });
     }

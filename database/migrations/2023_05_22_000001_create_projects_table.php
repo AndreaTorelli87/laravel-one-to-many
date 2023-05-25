@@ -13,12 +13,10 @@ return new class extends Migration
          //https://laravel.com/docs/9.x/migrations#available-column-types
 
          $table->id();
-
-         $table->text("url");
-         $table->text("titolo");
+         $table->string("img")->nullable();
+         $table->string("titolo", 200)->unique();
          $table->text("data_creazione");
          $table->text("descrizione");
-
          $table->timestamps();
       });
    }

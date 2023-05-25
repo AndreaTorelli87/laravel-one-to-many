@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string("name", 100)->unique();
             $table->string("slug", 100)->unique();
-            $table->foreignId("projects_id")->constrained();
             $table->timestamps();
         });
     }

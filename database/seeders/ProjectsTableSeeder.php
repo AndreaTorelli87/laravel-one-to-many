@@ -16,7 +16,7 @@ class ProjectsTableSeeder extends Seeder
       foreach ($projects as $project) {
          $newProject = new Project();
          
-         $newProject->url = $project["url"];
+         $newProject->img = $project["img"];
          $newProject->titolo = $project["titolo"];
          $newProject->slug = Str::slug($newProject->titolo, "-");
          $newProject->data_creazione = $project["data_creazione"];

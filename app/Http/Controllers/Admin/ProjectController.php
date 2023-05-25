@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -22,7 +23,8 @@ class ProjectController extends Controller
 
    public function create()
    {
-      return view("profile.admin.projects.create");
+      $types = Type::all();
+      return view("profile.admin.projects.create", compact("types"));
    }
 
    public function store(StoreProjectRequest $request)
@@ -31,7 +33,7 @@ class ProjectController extends Controller
       $newProject = new Project();
       $newProject->fill($form_data);
       $newProject->save();
-      return redirect()->route("admin.projects.show", ["project" => $newProject->id])->with("status", "Il nuovo project è stato aggiunto con successo!");
+      return redirect()->route("admin.projects.show", ["project" => $newProject->id])->with("status", "Il nuovo progetto è stato aggiunto con successo!");
    }
 
    public function show(Project $project)
@@ -41,14 +43,15 @@ class ProjectController extends Controller
 
    public function edit(Project $project)
    {
-      return view("profile.admin.projects.edit", compact("project"));
+      $types = Type::all();
+      return view("profile.admin.projects.edit", compact("project", "types"));
    }
 
    public function update(UpdateProjectRequest $request, Project $project)
    {
       $form_data = $request->all();
       $project->update($form_data);
-      return redirect()->route("profile.admin.projects.show", ["project" => $project->id])->with("status", "Il project è stato aggiornato con successo!");
+      return redirect()->route("admin.projects.show", ["project" => $project->id])->with("status", "Il progetto è stato aggiornato con successo!");
    }
 
    public function destroy(Project $project)

@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table("projects", function (Blueprint $table) {
-            $table->string("slug")->after("titolo");
+            $table->string("slug")->nullable()->after("titolo");
             $table->string("link_github")->nullable()->after("descrizione");
             $table->string("link_website")->nullable()->after("link_github");
 

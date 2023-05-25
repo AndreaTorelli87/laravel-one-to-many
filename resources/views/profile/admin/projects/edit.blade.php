@@ -10,15 +10,27 @@
       @method("PUT")
 
       <div class="mb-2">
-         <label for="url" class="form-label">Url:</label>
-         <input type="text" class="form-control @error("url") is-invalid @enderror" id="url" value="{{old("url", $project->url)}}" name="url">
-         @error("url")<div class="invalid-feedback">{{ $message }}</div>@enderror
+         <label for="img" class="form-label">Url immagine:</label>
+         <input type="text" class="form-control @error("img") is-invalid @enderror" id="img" value="{{old("img", $project->img)}}" name="img">
+         @error("img")<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
       <div class="mb-2">
          <label for="titolo" class="form-label">Titolo:</label>
          <input type="text" class="form-control @error("titolo") is-invalid @enderror" id="titolo" value="{{old("titolo", $project->titolo)}}" name="titolo">
          @error("titolo")<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
+
+      <div class="mb-3">
+         <label for="type_id" class="form-label">Seleziona categoria</label>
+         <select class="form-select @error("type_id") is-invalid @enderror" name="type_id" id="type_id">
+               <option @selected(old("type_id", $project->type_id)=="") value="">Nessuna categoria</option>
+               @foreach ($types as $type)
+                  <option @selected(old("type_id", $project->type_id)==$type->id) value="{{$type->id}}">{{$type->name}}</option>
+               @endforeach
+         </select>
+         @error("type_id")<div class="invalid-feedback">{{$message}}</div>@enderror
+      </div>
+
       <div class="mb-2">
          <label for="data_creazione" class="form-label">Data_creazione:</label>
          <input type="text" class="form-control @error("data_creazione") is-invalid @enderror" id="data_creazione" value="{{old("data_creazione", $project->data_creazione)}}" name="data_creazione">

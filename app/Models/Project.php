@@ -12,6 +12,6 @@ class Project extends Model
    protected $guarded = [];
 
    public function type() {
-      return $this->belongsTo(Types::class);
+      return $this->belongsTo(Type::class);
    }
 }
